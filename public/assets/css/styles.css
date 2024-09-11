@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.navbar {
+  background-color: #0288D1;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+}
+
+.navbar ul li {
+  margin-left: 20px;
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar .user {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .user img {
+  margin-left: 10px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.card {
+  background-color: #F39C12;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+}
+
+.charts, .stock-status {
+  margin: 20px;
+}
+
+.chart img, .stock-status table {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.stock-status table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.stock-status th, .stock-status td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.stock-status th {
+  background-color: #f4f4f4;
+}
+
+.stock-status td img {
+  width: 50px;
+  height: 50px;
+}
