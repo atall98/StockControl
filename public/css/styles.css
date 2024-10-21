@@ -6,90 +6,204 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  display: flex;
+  height: 100vh; /* Assure que le contenu occupe toute la hauteur de la fenêtre */
 }
 
-.navbar {
-  background-color: #0288D1;
-  padding: 15px;
+.sidebar {
+  width: 250px;
+  background-color: rgb(8, 41, 255);
+  color: white;
+  height: 100vh;
+  position: fixed; /* Fixe la sidebar pour qu'elle reste en place lors du défilement */
+}
+
+.logo {
+  text-align: center;
+  padding: 20px;
+  background-color: rgb(8, 41, 255);
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 20px 0;
+}
+
+.sidebar nav ul li {
+  padding: 15px 20px;
+}
+
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar nav ul li a.active, .sidebar nav ul li a:hover {
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 5px; 
+  transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  margin-left: 250px; 
+  display: flex;
+  flex-direction: column; 
+}
+
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
 }
 
-.navbar .logo {
-  font-size: 24px;
-  font-weight: bold;
+.profile {
+  position: relative;
+  cursor: pointer;
 }
 
-.navbar ul {
-  list-style: none;
-  display: flex;
-}
-
-.navbar ul li {
-  margin-left: 20px;
-}
-
-.navbar ul li a {
-  color: white;
-  text-decoration: none;
-}
-
-.navbar .user {
-  display: flex;
-  align-items: center;
-}
-
-.navbar .user img {
-  margin-left: 10px;
+.profile img {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+}
+
+.profile-menu {
+  display: none; /* Masque le menu par défaut */
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 150px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile:hover .profile-menu {
+  display: block; /* Affiche le menu lorsque l'utilisateur passe la souris sur le profil */
+}
+
+.profile-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.profile-menu ul li {
+  padding: 10px 20px;
+}
+
+.profile-menu ul li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+.profile-menu ul li a:hover {
+  background-color: #f1f1f1;
 }
 
 .dashboard {
   display: flex;
-  justify-content: space-around;
-  margin: 20px;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1; /* S'assure que le contenu de la dashboard prend tout l'espace vertical */
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
 .card {
-  background-color: #F39C12;
+  background-color: #f1f1f1;
   padding: 20px;
-  width: 200px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.dashboard-bottom {
+  display: flex;
+  justify-content: space-between; /* Place "stock value" à gauche et "report" à droite */
+  align-items: flex-start; /* Assure l'alignement en haut des sections */
+  gap: 20px; /* Ajoute un espace entre les deux sections */
+}
+
+.stock-value {
+  flex-basis: 55%; /* Utilisez 65% pour que cela prenne une plus grande partie de l'espace */
+  background-color: #3498db;
   color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 100%; /* Prend toute la largeur disponible */
+  height: 400px;
 }
 
-.charts, .stock-status {
-  margin: 20px;
+.report {
+  flex-basis: 45%; /* Utilisez 30% pour la section du rapport */
+  background-color: #27ae60; /* Couleur de fond verte */
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 100%; /* Prend toute la largeur disponible */
+  height: 400px;
 }
 
-.chart img, .stock-status table {
+.notification {
+  width: 100%; /* Définit la largeur pour occuper 100% de l'espace */
+  background-color: #e74c3c;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.notification h3,
+.stock-value h3,
+.report h3 {
+  margin-bottom: 10px;
+}
+
+.notification .stock-alert {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.notification table {
   width: 100%;
-  max-width: 1000px;
-}
-
-.stock-status table {
-  width: 100%;
-  border-collapse: collapse;
   margin-top: 10px;
 }
 
-.stock-status th, .stock-status td {
-  padding: 10px;
-  border: 1px solid #ccc;
+canvas {
+  width: 100%;
+  height: auto;
 }
 
-.stock-status th {
-  background-color: #f4f4f4;
+nav ul li a {
+  position: relative; /* Nécessaire pour le positionnement de l'indicateur */
+  padding-bottom: 5px; /* Ajoute de l'espace pour l'indicateur */
 }
 
-.stock-status td img {
-  width: 50px;
-  height: 50px;
+nav ul li a.active::after {
+  content: ''; /* Nécessaire pour créer un pseudo-élément */
+  position: absolute;
+  left: 50%;
+  bottom: 0; /* Positionne l'indicateur juste en dessous du texte */
+  transform: translateX(-50%); /* Centre l'indicateur */
+  width: 30px; /* Largeur de l'indicateur */
+  height: 3px; /* Hauteur de l'indicateur */
+  background-color: #1a44ec; /* Couleur de l'indicateur */
+  border-radius: 2px; /* Arrondir les bords de l'indicateur */
+}
+
+/* Ajout de la classe pour aligner le conteneur à droite */
+.align-right {
+  margin-left: auto; /* Pousse le conteneur vers la droite */
 }

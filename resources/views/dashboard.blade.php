@@ -1,1 +1,1 @@
-@extends('layouts.template')
+@extends('layouts.template');

@@ -9,16 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('produits', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('reference');
-            $table->String('libelle');
+            $table->id();
+            $table->integer('reference')->notNull();
+            $table->string('libelle', 255)->notNull();
             $table->text('description')->nullable();
-            $table->decimal('prix');
-            $table->integer('quantite');
-            $table->integer('quantite_alerte');
+            $table->decimal('prix_achat', 10, 2)->notNull();
+            $table->decimal('prix_vente', 10, 2)->notNull();
+            $table->integer('quantite')->notNull();
+            $table->integer('quantite_alerte')->notNull();
             $table->timestamps();
         });
     }

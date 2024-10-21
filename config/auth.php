@@ -36,11 +36,35 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'users',
     ],
+
+    'utilisateurs' => [
+        'driver' => 'session',
+        'provider' => 'utilisateurs',
+    ],
+],
+
+'providers' => [
+    'users' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\User::class,
+    ],
+
+    'utilisateurs' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Utilisateur::class,
+    ],
+
+    
+
+],
+
+
+
+
 
     /*
     |--------------------------------------------------------------------------
