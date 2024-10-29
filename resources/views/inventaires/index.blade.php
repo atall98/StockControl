@@ -61,16 +61,16 @@
         <div class="row">
             <div class="col-md-6">
                 <h2>Ventes</h2>
-                <a href="{{ route('inventaires.ventes', 'jour') }}" class="btn btn-primary">Inventaire du jour</a>
-                <a href="{{ route('inventaires.ventes', 'mois') }}" class="btn btn-primary">Inventaire du mois</a>
-                <a href="{{ route('inventaires.ventes', 'annee') }}" class="btn btn-primary">Inventaire de l'année</a>
+                <a href="{{ route('inventaires.ventes', 'jour') }}" class="btn btn-primary">Inventaire des ventes</a>
+                {{-- <a href="{{ route('inventaires.ventes', 'mois') }}" class="btn btn-primary">Inventaire du mois</a>
+                <a href="{{ route('inventaires.ventes', 'annee') }}" class="btn btn-primary">Inventaire de l'année</a> --}}
             </div>
             <div class="col-md-6">
                 
                 <h2>Achats</h2>
-                <a href="{{ route('inventaires.achats', 'jour') }}" class="btn btn-primary">Inventaire du jour</a>
-                <a href="{{ route('inventaires.achats', 'mois') }}" class="btn btn-primary">Inventaire du mois</a>
-                <a href="{{ route('inventaires.achats', 'annee') }}" class="btn btn-primary">Inventaire de l'année</a>
+                <a href="{{ route('inventaires.achats', 'jour') }}" class="btn btn-primary">Inventaire des achats</a>
+                {{-- <a href="{{ route('inventaires.achats', 'mois') }}" class="btn btn-primary">Inventaire du mois</a>
+                <a href="{{ route('inventaires.achats', 'annee') }}" class="btn btn-primary">Inventaire de l'année</a> --}}
             </div>
         </div>
     </div>
