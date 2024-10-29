@@ -5,6 +5,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\fournisseurController;
+use App\Http\Controllers\InventaireController;
 use App\Http\Controllers\ParametreController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
@@ -31,8 +32,9 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 
     Route::resource('clients', ClientController::class);
 
@@ -64,6 +66,13 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/parametres/affichage', [ParametreController::class, 'updateAffichage'])->name('parametres.update.affichage');
     Route::put('/parametres/langue', [ParametreController::class, 'updateLangue'])->name('parametres.update.langue');
+
+
+    Route::get('/inventaires', [InventaireController::class, 'index'])->name('inventaires.index');
+    Route::get('/inventaires/ventes/{periode}', [InventaireController::class, 'ventes'])->name('inventaires.ventes');
+    Route::get('/inventaires/achats/{periode}', [InventaireController::class, 'achats'])->name('inventaires.achats');
+    Route::get('/inventaires/{periode}', [InventaireController::class, 'index'])->name('inventaires.index.periode');
+
 
 
 

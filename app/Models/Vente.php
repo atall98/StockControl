@@ -18,7 +18,10 @@ public function produits()
                 ->withPivot('quantite', 'prix_unitaire', 'prix_total');
 }
 
-
+public function produit()
+{
+    return $this->belongsTo(Produits::class);
+}
 
 
 

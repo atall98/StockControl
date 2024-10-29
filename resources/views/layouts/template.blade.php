@@ -42,8 +42,11 @@
                         class="{{ request()->routeIs('ventes.index') ? 'active' : '' }}">Ventes</a></li>
                 <li><a href="{{ route('users.index') }}"
                         class="{{ request()->routeIs('users.index') ? 'active' : '' }}">Utilisateurs</a></li>
+                <li><a href="{{ route('inventaires.index') }}"
+                        class="{{ request()->routeIs('inventaires.index') ? 'active' : '' }}">Inventaire</a></li>
                 <li><a href="{{ route('parametres.index') }}"
                         class="{{ request()->routeIs('parametres.index') ? 'active' : '' }}">Paramètres</a></li>
+                
             </ul>
         </nav>
     </div>
@@ -137,7 +140,7 @@
                 }]
             }
         });
-    
+
         const reportCtx = document.getElementById('reportChart').getContext('2d');
         const reportChart = new Chart(reportCtx, {
             type: 'bar',
@@ -155,8 +158,8 @@
             }
         });
     </script>
-    
-    
+
+
 
 
 </body>

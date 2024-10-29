@@ -14,6 +14,7 @@ class AchatController extends Controller
     /**
      * Affiche une liste des achats.
      */
+    
     public function index()
     {
         $achats = Achat::with('produits')->get();

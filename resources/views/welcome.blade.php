@@ -3,86 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion de Stock</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Gestion Simplifiée des Stocks</title>
+    <style>
+        /* Styles globaux */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #e3f2fd);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Conteneur principal */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: #ffffff;
+            color: #4a4a4a;
+            border-radius: 15px;
+            padding: 2em;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 1.5em;
+        }
+        header svg {
+            width: 80px;
+            height: auto;
+            fill: #4db6ac;
+            margin-bottom: 0.5em;
+            animation: bounce 1.5s infinite;
+        }
+        header h1 {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #00796b;
+            margin-bottom: 0.5em;
+        }
+
+        /* Animation du logo */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+            margin-top: 1em;
+        }
+        nav a {
+            color: #00796b;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            border: 2px solid #00796b;
+            border-radius: 50px;
+            transition: background 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background: #00796b;
+            color: #fff;
+        }
+
+        /* Section de bienvenue */
+        .welcome-section {
+            margin: 2em 0;
+            font-size: 1.2em;
+        }
+        .welcome-section p {
+            color: #616161;
+            margin: 0.5em 0;
+        }
+        .button {
+            background: #4db6ac;
+            color: #fff;
+            padding: 0.75em 1.5em;
+            border: none;
+            border-radius: 50px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+        .button:hover {
+            background: #00796b;
+        }
+
+        /* Section des fonctionnalités */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5em;
+            margin-top: 2em;
+        }
+        .feature-item {
+            background: #e0f2f1;
+            color: #00796b;
+            padding: 1.5em;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s;
+            text-align: center;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .feature-item h3 {
+            font-size: 1.3em;
+            color: #004d40;
+            margin-bottom: 0.5em;
+        }
+
+        /* Pied de page */
+        footer {
+            margin-top: 2em;
+            color: rgba(0, 77, 64, 0.8);
+            font-size: 0.875em;
+        }
+        footer a {
+            color: #4db6ac;
+            text-decoration: none;
+            margin: 0 0.5em;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            color: #00796b;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
-<body class="font-sans antialiased bg-[#87CEFA] text-black">
-    <div class="bg-white text-black">
-        <img id="background" class="absolute -left-20 top-0 max-w-[877px]" src="https://laravel.com/assets/img/welcome/background.svg" />
-        <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
-            <div class="relative w-full max-w-7xl px-6">
-                <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
-                    <div class="flex lg:justify-center lg:col-start-2">
-                        <svg class="h-12 w-auto text-white lg:h-16 lg:text-[#FF2D20]" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Ton SVG ici -->
-                        </svg>
-                    </div>
-                    @if (Route::has('login'))
-                        <nav class="-mx-3 flex flex-1 justify-end">
-                            @auth
-                                <a href="{{ url('/dashboard') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                                    Dashboard
-                                </a>
-                            @else
-                                <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                                    Log in
-                                </a>
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                                        Register
-                                    </a>
-                                @endif
-                            @endauth
-                        </nav>
-                    @endif
-                </header>
-                
-                <!-- Section d'accueil -->
-                <section class="text-center py-20">
-                    <h1 class="text-4xl font-bold text-[#FF2D20]">Bienvenue dans notre système de gestion de stock !</h1>
-                    <p class="mt-4 text-lg text-black/70">Optimisez votre gestion de stock avec nos solutions efficaces.</p>
-                    <a href="#services" class="mt-8 inline-block px-6 py-3 text-white bg-[#FF2D20] rounded-md hover:bg-[#FF2D20]/80">Découvrez nos fonctionnalités</a>
-                </section>
+<body>
+    <div class="container">
+        <!-- Header avec le logo et le titre -->
+        <header>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 62 65"><!-- SVG ici --></svg>
+            <h1>Gestion Simplifiée des Stocks</h1>
+        </header>
 
-                <!-- Section des fonctionnalités -->
-                <section id="services" class="py-20">
-                    <h2 class="text-3xl font-semibold text-center">Fonctionnalités Principales</h2>
-                    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                            <h3 class="text-xl font-bold">Suivi en Temps Réel</h3>
-                            <p class="mt-2">Surveillez vos niveaux de stock en temps réel pour éviter les ruptures.</p>
-                        </div>
-                        <div class="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                            <h3 class="text-xl font-bold">Alertes de Stock</h3>
-                            <p class="mt-2">Recevez des alertes lorsque le stock atteint un seuil critique.</p>
-                        </div>
-                        <div class="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                            <h3 class="text-xl font-bold">Rapports Personnalisables</h3>
-                            <p class="mt-2">Générez des rapports détaillés pour une meilleure prise de décision.</p>
-                        </div>
-                    </div>
-                </section>
+        <!-- Navigation -->
+        <nav>
+            @if (Route::has('login'))
+                @auth
+                    <a href="{{ url('/dashboard') }}">Dashboard</a>
+                @else
+                    <a href="{{ route('login') }}">Log in</a>
+                    {{-- @if (Route::has('register'))
+                        <a href="{{ route('register') }}">Register</a>
+                    @endif --}}
+                @endauth
+            @endif
+        </nav>
 
-                <!-- Section des témoignages -->
-                {{-- <section class="py-20 bg-gray-100">
-                    <h2 class="text-3xl font-semibold text-center">Ce Que Disent Nos Clients</h2>
-                    <div class="mt-8 flex flex-col items-center">
-                        <blockquote class="p-6 bg-white rounded-lg shadow-lg">
-                            <p class="italic">"Ce système a transformé notre gestion de stock, un gain de temps incroyable !"</p>
-                            <cite class="block mt-4 text-right">- Client satisfait</cite>
-                        </blockquote>
-                    </div>
-                </section> --}}
+        <!-- Section de bienvenue -->
+        <section class="welcome-section">
+            <h2>Découvrez une gestion de stock intuitive</h2>
+            <p>Améliorez votre organisation et gardez le contrôle sur vos stocks à chaque instant.</p><br>
+            <a href="#services" class="button">Explorez Nos Outils</a>
+        </section>
+
+        <!-- Section des fonctionnalités -->
+        <section id="services" class="features">
+            <div class="feature-item">
+                <h3>Suivi Actif en Direct</h3>
+                <p>Visualisez vos stocks en temps réel pour anticiper et éviter les ruptures.</p>
             </div>
-        </div>
+            <div class="feature-item">
+                <h3>Notifications de Réapprovisionnement</h3>
+                <p>Recevez des alertes automatiques lorsque vos niveaux de stock sont bas.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Analyses et Rapports Clairs</h3>
+                <p>Générez des rapports précis pour une meilleure prise de décision.</p>
+            </div>
+        </section>
+
         <!-- Pied de page -->
-        <footer class="py-10 text-center">
-            <p class="text-black/50">© 2024 Mon Système de Gestion de Stock. Tous droits réservés.</p>
-            <div class="mt-4">
-                <a href="#" class="text-[#FF2D20] hover:underline">Contact</a>
-                <span class="mx-2">|</span>
-                <a href="#" class="text-[#FF2D20] hover:underline">Politique de confidentialité</a>
+        <footer>
+            <p>© 2024 Gestion Simplifiée des Stocks. Tous droits réservés.</p>
+            <div>
+                <a href="#">Contact</a>
+                <span>|</span>
+                <a href="#">Politique de Confidentialité</a>
             </div>
         </footer>
     </div>
